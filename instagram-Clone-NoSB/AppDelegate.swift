@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+// şuan develop branchindeyim
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
