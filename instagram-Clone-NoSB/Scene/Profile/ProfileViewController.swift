@@ -116,7 +116,47 @@ class ProfileViewController: UIViewController {
         button.clipsToBounds = true 
         return button
     }()
-
+    private let saveStorys : UIImageView = {
+        let image = UIImageView()
+        image.backgroundColor = .white
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
+        image.image = UIImage(named: "manzara1")
+        return image
+    }()
+    private let saveStoryLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.textAlignment = .center
+        return label
+    }()
+    private let addSaveStorys : UIImageView = {
+        let image = UIImageView()
+        image.backgroundColor = .black
+        image.tintColor = .white
+        image.contentMode = .center
+        image.clipsToBounds = true
+        image.image = UIImage(systemName: "plus")
+        image.layer.borderColor = UIColor.white.cgColor
+        image.layer.borderWidth = 1.0
+        return image
+    }()
+    private let addSaveStoryLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.textAlignment = .center
+        label.text = "Yeni"
+        return label
+    }()
+    private let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(ProfilePostsCollectionViewCell.self, forCellWithReuseIdentifier: ProfilePostsCollectionViewCell.identifier)
+        collectionView.backgroundColor = .black
+        return collectionView
+    }()
+    
     
     private lazy var viewModel = ProfileViewModel()
     //--MARK: LifeCycle
@@ -124,6 +164,8 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         viewModel.view = self
         viewModel.viewDidload()
+        collectionView.dataSource = self
+        collectionView.delegate = self
     }
     
     override func viewDidLayoutSubviews() {
@@ -134,8 +176,13 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = .black
         usernameLabel.text = viewModel.userName
         profilePhoto.layer.cornerRadius = profilePhoto.frame.size.width / 2
+        saveStorys.layer.cornerRadius = saveStorys.frame.size.width / 2
+        addSaveStorys.layer.cornerRadius = addSaveStorys.frame.size.width / 2
         nameLabel.text = viewModel.nameLabel
         bioLabel.text = viewModel.bioText
+        saveStoryLabel.text = "y"
+        addSaveStoryLabel.text = "Yeni"
+        
         
     }
 
@@ -144,7 +191,7 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: ProfileViewControllerInterface{
     func configurePage(){
-        [lockButton, usernameLabel, settingsButton, profilePhoto, postLabel, followersLabel, followingLabel, postCount, followersCount, followingCount,nameLabel, bioLabel, editProfileButton, shareProfileButton].forEach{
+        [lockButton, usernameLabel, settingsButton, profilePhoto, postLabel, followersLabel, followingLabel, postCount, followersCount, followingCount,nameLabel, bioLabel, editProfileButton, shareProfileButton, saveStorys, saveStoryLabel, collectionView, addSaveStorys, addSaveStoryLabel].forEach{
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -201,11 +248,59 @@ extension ProfileViewController: ProfileViewControllerInterface{
             shareProfileButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20),
             shareProfileButton.topAnchor.constraint(equalTo: editProfileButton.topAnchor),
             shareProfileButton.bottomAnchor.constraint(equalTo: editProfileButton.bottomAnchor),
-            shareProfileButton.widthAnchor.constraint(equalTo: editProfileButton.widthAnchor)
+            shareProfileButton.widthAnchor.constraint(equalTo: editProfileButton.widthAnchor),
+            
+            saveStorys.topAnchor.constraint(equalTo: editProfileButton.bottomAnchor, constant: 16),
+            saveStorys.leadingAnchor.constraint(equalTo: editProfileButton.leadingAnchor),
+            saveStorys.heightAnchor.constraint(equalTo: profilePhoto.heightAnchor, multiplier: 0.9),
+            saveStorys.widthAnchor.constraint(equalTo: profilePhoto.widthAnchor, multiplier: 0.9),
+            
+            saveStoryLabel.topAnchor.constraint(equalTo: saveStorys.bottomAnchor, constant: 0),
+            saveStoryLabel.centerXAnchor.constraint(equalTo: saveStorys.centerXAnchor),
+            
+            addSaveStorys.leadingAnchor.constraint(equalTo: saveStorys.trailingAnchor, constant: 20),
+            addSaveStorys.centerYAnchor.constraint(equalTo: saveStorys.centerYAnchor),
+            addSaveStorys.heightAnchor.constraint(equalTo: saveStorys.heightAnchor),
+            addSaveStorys.topAnchor.constraint(equalTo: saveStorys.topAnchor),
+            addSaveStorys.widthAnchor.constraint(equalTo: saveStorys.widthAnchor),
+            
+            addSaveStoryLabel.centerXAnchor.constraint(equalTo: addSaveStorys.centerXAnchor),
+            addSaveStoryLabel.topAnchor.constraint(equalTo: addSaveStorys.bottomAnchor, constant: 0),
+            
+            collectionView.topAnchor.constraint(equalTo: saveStoryLabel.bottomAnchor, constant: 5),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
             
         ])
     }
 }
+//--MARK: CollectionView
+extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDelegate{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfilePostsCollectionViewCell.identifier, for: indexPath) as? ProfilePostsCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        return cell
+    }
+}
+extension ProfileViewController: UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (view.frame.width / 3)-1.3, height: (view.frame.width / 3.1)-1.34)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 2
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
+}
+
 
 #Preview(){
     ProfileViewController()
