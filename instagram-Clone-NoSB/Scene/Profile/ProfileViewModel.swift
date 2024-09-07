@@ -18,7 +18,7 @@ final class ProfileViewModel{
     weak var view: ProfileViewControllerInterface?
     
     var userName: String = "samet.krkmzz"
-    var postCount: Int = 1
+    var postCount: Int = 10
     var followersCount: Int = 277
     var followingCount: Int = 391
     var nameLabel: String = "Samet"

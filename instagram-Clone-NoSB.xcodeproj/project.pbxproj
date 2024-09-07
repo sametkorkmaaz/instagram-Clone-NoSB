@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		111845A52C8B60170085696E /* DMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111845A42C8B60170085696E /* DMViewController.swift */; };
 		111845A72C8B64F30085696E /* DMViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111845A62C8B64F30085696E /* DMViewModel.swift */; };
+		1118F7782C8CA4BB00368457 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1118F7772C8CA4BB00368457 /* NotificationViewModel.swift */; };
+		1118F77A2C8CA4C400368457 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1118F7792C8CA4C400368457 /* PostViewModel.swift */; };
+		115AE9A72C8CCA2A0002C5DE /* ProfilePostsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115AE9A62C8CCA2A0002C5DE /* ProfilePostsCollectionViewCell.swift */; };
 		11A002642C8B0DA500A776B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A002632C8B0DA500A776B4 /* AppDelegate.swift */; };
 		11A002662C8B0DA500A776B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A002652C8B0DA500A776B4 /* SceneDelegate.swift */; };
 		11A0026D2C8B0DA600A776B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11A0026C2C8B0DA600A776B4 /* Assets.xcassets */; };
@@ -33,6 +36,9 @@
 /* Begin PBXFileReference section */
 		111845A42C8B60170085696E /* DMViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMViewController.swift; sourceTree = "<group>"; };
 		111845A62C8B64F30085696E /* DMViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMViewModel.swift; sourceTree = "<group>"; };
+		1118F7772C8CA4BB00368457 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
+		1118F7792C8CA4C400368457 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		115AE9A62C8CCA2A0002C5DE /* ProfilePostsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostsCollectionViewCell.swift; sourceTree = "<group>"; };
 		11A002602C8B0DA500A776B4 /* instagram-Clone-NoSB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "instagram-Clone-NoSB.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11A002632C8B0DA500A776B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11A002652C8B0DA500A776B4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,8 +106,8 @@
 		11A002772C8B0DDC00A776B4 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				11DAFE1D2C8B523B00C5E66F /* DM */,
 				11A0028C2C8B2AF200A776B4 /* Cell */,
+				11DAFE1D2C8B523B00C5E66F /* DM */,
 				11A0027D2C8B0E2800A776B4 /* Profile */,
 				11A0027C2C8B0E0B00A776B4 /* Notification */,
 				11A0027B2C8B0DFF00A776B4 /* Post */,
@@ -142,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				11A002842C8B10B800A776B4 /* PostViewController.swift */,
+				1118F7792C8CA4C400368457 /* PostViewModel.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -150,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				11A002862C8B10C400A776B4 /* NotificationViewController.swift */,
+				1118F7772C8CA4BB00368457 /* NotificationViewModel.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -170,6 +178,7 @@
 				11DAFE182C8B408500C5E66F /* HomePostTableViewCell.swift */,
 				11CEF8B22C8B6E00007074AC /* DMTableViewCell.swift */,
 				11D95F9E2C8B9938007118BB /* SearchTableViewCell.swift */,
+				115AE9A62C8CCA2A0002C5DE /* ProfilePostsCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -263,8 +272,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				111845A52C8B60170085696E /* DMViewController.swift in Sources */,
+				1118F7782C8CA4BB00368457 /* NotificationViewModel.swift in Sources */,
 				11C68D052C8C67C800442AF5 /* ProfileViewModel.swift in Sources */,
 				11A002852C8B10B800A776B4 /* PostViewController.swift in Sources */,
+				115AE9A72C8CCA2A0002C5DE /* ProfilePostsCollectionViewCell.swift in Sources */,
 				11DAFE1C2C8B422B00C5E66F /* PostModel.swift in Sources */,
 				11CEF8B52C8B7093007074AC /* MessageModel.swift in Sources */,
 				11A0028B2C8B197100A776B4 /* HomeViewModel.swift in Sources */,
@@ -276,6 +287,7 @@
 				11A002872C8B10C400A776B4 /* NotificationViewController.swift in Sources */,
 				11A0028E2C8B2B1600A776B4 /* HomeStoryCollectionViewCell.swift in Sources */,
 				11CEF8B32C8B6E00007074AC /* DMTableViewCell.swift in Sources */,
+				1118F77A2C8CA4C400368457 /* PostViewModel.swift in Sources */,
 				11A002662C8B0DA500A776B4 /* SceneDelegate.swift in Sources */,
 				11A0027F2C8B0E5300A776B4 /* TabbarViewController.swift in Sources */,
 				11D95F9B2C8B8CA3007118BB /* SearchViewModel.swift in Sources */,
